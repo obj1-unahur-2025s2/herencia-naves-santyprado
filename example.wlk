@@ -1,8 +1,14 @@
 class Nave {
   method prepararViaje()
+  method escapar()
+  method avisar()
   var combustible
   var velocidad
   var direccion
+  method recibirAmenza() {
+    self.escapar()
+    self.avisar()
+  }
   method estaTranquila()= combustible>=4000 and velocidad <= 12000
   method accionAdicional() {
     self.cargarCombustible(30000)
@@ -107,7 +113,7 @@ class NaveCombate inherits Nave{
     self.acelerar(15000)
     self.emitirMensaje("Saliendo en Misión")
   } 
-  override method estaTranquila() = super()
+  override method estaTranquila() = super() and not self.misilesDesplegados()
 }
 
 class NaveHospital inherits NavePasajeros {
@@ -122,10 +128,14 @@ class NaveHospital inherits NavePasajeros {
   }
   method quirofanosPreparados() = quirofanosPreparados
 
+  override method estaTranquila() = super() and self.quirofanosPreparados()
+
+  override method
+
 
 }
 
 class NaveCombateSigilosa inherits NaveCombate{
 
-  override method estaTranquila() =
+  override method estaTranquila() = super() and not self.estaInvisible()
 }
